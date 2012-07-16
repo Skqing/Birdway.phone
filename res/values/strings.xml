@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Birdway</string>
+
+    <string name="username">帐号</string>
+    <string name="usernametip">邮箱或用户名</string>
+    
+    <string name="password">密码</string>
+    <string name="passwordtip">6到16位</string>
+    
+    <string name="enter">登录</string>
+    <string name="login">注册</string>
+    
+    <string name="format">dd.mm.sss</string>
+    
+    
+    
+    <string name="latitudeitem">纬度</string>
+    <string name="latitudevalue">显示纬度</string>
+    
+    <string name="longitudeitem">经度</string>
+    <string name="longitudevalue">显示经度</string>
+    
+    
+</resources>
