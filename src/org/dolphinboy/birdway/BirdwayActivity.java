@@ -15,7 +15,6 @@ import android.widget.Button;
 public class BirdwayActivity extends Activity {
 	private Button enterbut = null;
 	private Button loginbut = null;
-	
 	private Context context = this; 
 	
     @Override
@@ -29,7 +28,6 @@ public class BirdwayActivity extends Activity {
         loginbut = (Button) findViewById(R.id.loginbut);
         loginbut.setOnClickListener(loginbutclicklistner); 
     }
-    
     
     
     @Override
@@ -52,8 +50,6 @@ public class BirdwayActivity extends Activity {
 		}
     };
     
-    
-    
     private OnClickListener onclicklistener = new OnClickListener() {
 		public void onClick(View v) {
 			int id = v.getId();
@@ -66,10 +62,6 @@ public class BirdwayActivity extends Activity {
 					break;
 			}
 			//Toast.makeText(BirdwayActivity.this, "click the button!", Toast.LENGTH_LONG).show();
-			
-		
 		}
-    	
     };
 }
-

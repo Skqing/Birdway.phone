@@ -9,7 +9,7 @@ public class GPSData implements Serializable {
 	public double longitude;    //经度
 	public double altitude;  //海拔
 	public float bear;      //偏离正北方的度数
-	public double speed;     //速度
+	public float speed;     //速度
 	public String gpstime;     //GPS时间
 	
 	public int getDatatype() {
@@ -42,10 +42,10 @@ public class GPSData implements Serializable {
 	public void setBear(float bear) {
 		this.bear = bear;
 	}
-	public double getSpeed() {
+	public float getSpeed() {
 		return speed;
 	}
-	public void setSpeed(double speed) {
+	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
 	public String getGpstime() {

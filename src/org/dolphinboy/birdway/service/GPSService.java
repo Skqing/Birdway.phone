@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import org.birdway.mobile.R;
-import org.dolphinboy.birdway.BirdwayActivity;
+import org.dolphinboy.birdway.activity.ShowInfoActivity;
 import org.dolphinboy.birdway.entity.GPSData;
 
 import android.app.IntentService;
@@ -44,8 +44,6 @@ public class GPSService extends IntentService {
     private Location location;
     private GpsStatus gpsstatus;
     
-    
-    
     private Context context = this;
     
     
@@ -59,13 +57,18 @@ public class GPSService extends IntentService {
 	protected void onHandleIntent(Intent intent) {
 		Log.i(TAG, "GPSService's onHandleIntent!");
 		initLocation();
-		int ontime = (int)gpsdata.getSpeed();
-		shwoNotification(Color.RED, ontime, 2);
+//		int ontime = 0;
+//		if (gpsdata != null) {
+//			ontime = (int)gpsdata.getSpeed();
+//		}
+		
+//		shwoNotification(Color.RED, ontime, 2);
 	}
 	
 	private void shwoNotification(int color, int ontime, int offtime) {
+		Log.i(TAG, "shwoNotification start!");
 		notification = new Notification(R.drawable.ic_launcher, "GPS for Birdway……", System.currentTimeMillis());
-		Intent intent = new Intent(this, BirdwayActivity.class);
+		Intent intent = new Intent(this, ShowInfoActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.setLatestEventInfo(this, "BirdwayService", "经度:"+gpsdata.getLongitude()+"纬度:"+gpsdata.getLatitude(), contentIntent);
 		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -135,18 +138,19 @@ public class GPSService extends IntentService {
          * GPS禁用时触发
          */
 		public void onProviderDisabled(String provider) {
-			
+			Log.i(TAG, "onProviderDisabled!");
 		}
 		/**
          * GPS开启时触发
          */
 		public void onProviderEnabled(String provider) {
-			
+			Log.i(TAG, "onProviderEnabled!");
 		}
 		/**
          * GPS状态变化时触发
          */
 		public void onStatusChanged(String provider, int status, Bundle extras) {
+			Log.i(TAG, "onStatusChanged!");
 			switch (status) {
             //GPS状态为可见时
             case LocationProvider.AVAILABLE:
@@ -161,7 +165,7 @@ public class GPSService extends IntentService {
                 Log.i(TAG, "当前GPS状态为暂停服务状态");
                 break;
             }
-			updateToNewLocation(null);
+//			updateToNewLocation(null);
 		}
     };
     //卫星状态监听
@@ -224,6 +228,9 @@ public class GPSService extends IntentService {
     		date.setTime(gpstime + 28800000);// UTC时间,转北京时间+8小时
 			gpsdata.setGpstime(DateFormat.format("yyyy-MM-dd kk:mm:ss", date).toString());
 			date = null;
+			
+			//更新状态条
+			shwoNotification(Color.RED, (int)gpsdata.getSpeed(), 2);
 			
 			//发送GPS数据广播  
             Intent intent = new Intent();  
