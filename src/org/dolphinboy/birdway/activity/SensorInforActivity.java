@@ -1,7 +1,7 @@
 package org.dolphinboy.birdway.activity;
 
-import org.birdway.mobile.R;
-import org.dolphinboy.birdway.entity.GPSData;
+import org.dolphinboy.birdway.R;
+import org.dolphinboy.birdway.entity.GpsData;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -10,12 +10,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-public class ShowInfoActivity extends Activity {
+public class SensorInforActivity extends Activity {
 	private GPSReceiver gpsreceiver;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.showinfo);
+		setContentView(R.layout.sensor);
 		
 		gpsreceiver = new GPSReceiver();  
         IntentFilter filter = new IntentFilter();  
@@ -43,7 +43,7 @@ public class ShowInfoActivity extends Activity {
         @Override  
         public void onReceive(Context context, Intent intent) {  
             Bundle bundle = intent.getExtras();  
-            GPSData gpsdata = (GPSData) bundle.get("gpsdata");  
+            GpsData gpsdata = (GpsData) bundle.get("gpsdata");  
         }  
     }
 }

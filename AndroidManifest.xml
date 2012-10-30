@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.birdway.mobile"
+    package="org.dolphinboy.birdway"
     android:versionCode="1"
     android:versionName="1.0" >
-
-    <uses-sdk android:minSdkVersion="10" />
+	
+    <application
+        android:name=".comps.GlobalApp"
+        android:icon="@drawable/logo" android:label="@string/app_name" >
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" /><!-- 动作名称：入口类 -->
+                <category android:name="android.intent.category.LAUNCHER" /><!-- 类别：显示在应用面板中 -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.BaiduMapActivity"
+            android:label="@string/main_map" >
+        </activity>
+        <activity
+            android:name=".activity.SingupActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
+        
+        <activity
+            android:name=".activity.CameraActivity"
+            android:label="@string/app_name" android:screenOrientation="landscape" />
+        
+        <service android:name=".service.BirdwayService" android:enabled="true" />
+        
+        <!-- <provider android:name=".provider.PersionProvider" 
+            android:authorities="org.dolphinboy.birdway.personprovider" /> -->
+        
+        <receiver android:name=".receiver.BirdwayReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.CAMERA_BUTTON" />
+            </intent-filter>
+        </receiver>
+    </application>
+	
+    <!-- 开机事件监听权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 访问手机状态权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     
+    <!-- 网络访问权限 -->
 	<uses-permission android:name="android.permission.INTERNET" />
 	
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -13,36 +54,35 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <uses-permission android:name="android.permission.CONTROL_LOCATION_UPDATES"/>
     
+    <!-- 网络状态访问权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- WI-FI状态访问权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 更改WI-FI状态权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     
+    <!-- 摄像头访问权限 -->
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_FRAME_BUFFER"/>
     
+    <!-- 录音权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 	
+    <!-- 通讯录的读权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 通讯录的写权限 -->
+	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
     
-    <application
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
-        <activity
-            android:name="org.dolphinboy.birdway.BirdwayActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <service android:name="org.dolphinboy.birdway.service.GPSService" />
-        
-        <receiver android:name="org.dolphinboy.birdway.receiver.BirdwayReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.CAMERA_BUTTON" />
-            </intent-filter>
-        </receiver>
-         
-    </application>
-	 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	
+    <!-- 添加对屏幕的支持 -->
+    <supports-screens 
+        android:largeScreens="true"
+    	android:normalScreens="true" 
+    	android:smallScreens="true"
+    	android:resizeable="true" 
+    	android:anyDensity="true" />
     
-    
+    <!-- AndroidSDK版本 -->
+    <uses-sdk android:minSdkVersion="10" />
 </manifest>

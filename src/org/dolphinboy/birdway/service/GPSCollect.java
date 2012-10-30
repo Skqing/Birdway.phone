@@ -3,9 +3,9 @@ package org.dolphinboy.birdway.service;
 import java.util.Date;
 import java.util.Iterator;
 
-import org.birdway.mobile.R;
-import org.dolphinboy.birdway.activity.ShowInfoActivity;
-import org.dolphinboy.birdway.entity.GPSData;
+import org.dolphinboy.birdway.R;
+import org.dolphinboy.birdway.activity.SensorActivity;
+import org.dolphinboy.birdway.entity.GpsData;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -28,11 +28,11 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.Toast;
 
-public class GPSService extends IntentService {
+public class GPSCollect extends IntentService {
 	private NotificationManager nm;
 	private Notification notification;
 	
-	private GPSData gpsdata;
+	private GpsData gpsdata;
 	private LocationManager locationManager;
 	//2000ms
     private static final long minTime = 5*1000;
@@ -49,7 +49,7 @@ public class GPSService extends IntentService {
     
     private static final String TAG = "GPSService";
     
-	public GPSService() {
+	public GPSCollect() {
 		super("GPSService");
 	}
 
@@ -68,7 +68,7 @@ public class GPSService extends IntentService {
 	private void shwoNotification(int color, int ontime, int offtime) {
 		Log.i(TAG, "shwoNotification start!");
 		notification = new Notification(R.drawable.ic_launcher, "GPS for Birdway……", System.currentTimeMillis());
-		Intent intent = new Intent(this, ShowInfoActivity.class);
+		Intent intent = new Intent(this, SensorActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.setLatestEventInfo(this, "BirdwayService", "经度:"+gpsdata.getLongitude()+"纬度:"+gpsdata.getLatitude(), contentIntent);
 		nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -76,7 +76,7 @@ public class GPSService extends IntentService {
 		notification.ledOnMS = ontime;  //显示时间
 		notification.ledOffMS = offtime;  //关闭时间
 		notification.flags = notification.flags | Notification.FLAG_SHOW_LIGHTS;
-		nm.notify(R.layout.showinfo, notification);
+		nm.notify(R.layout.sensor, notification);
 		Log.i(TAG, "shwoNotification OK!");
 	}
 	
