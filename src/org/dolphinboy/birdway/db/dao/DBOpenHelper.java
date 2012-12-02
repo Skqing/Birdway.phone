@@ -7,26 +7,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBOpenHelper extends SQLiteOpenHelper {
 	private static final String dbname = "birdway.db";
 	private static final int dbversion = 1;
-//	protected SQLiteDatabase dbwrite = null;
-//	protected SQLiteDatabase dbread = null;
 	
 	public DBOpenHelper(Context context) {
 		super(context, dbname, null, dbversion);
-//		try {
-//			dbwrite = getReadableDatabase();
-//		} catch (Exception e) {
-//			dbwrite = null;
-//		}
-//		dbread = getReadableDatabase();
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String sql = "create table bd_gps(id_ inteter primary key aotuincrement," +
-				" latitude real, longitude real, gpstime varchar(20))";
-		String[] args = null;
-		db.execSQL(sql, args);
-		
+		StringBuilder initsql = new StringBuilder();
+		initsql.append("CREATE TABLE IF NOT EXISTS t_gpsdata(id_ INTEGER PRIMARY KEY AUTOINCREMENT, ")
+			.append("latitude REAL, longitude REAL, altitude REAL, accuracy REAL, bear REAL, ")
+			.append("speed REAL, gpstime INTEGER, recordtime INTEGER, provider varchar(10), state INTEGER)");
+		db.execSQL(initsql.toString());
 	}
 
 	@Override

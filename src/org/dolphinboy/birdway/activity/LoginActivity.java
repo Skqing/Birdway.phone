@@ -1,9 +1,9 @@
 package org.dolphinboy.birdway.activity;
 
 import org.dolphinboy.birdway.R;
+import org.dolphinboy.birdway.service.BirdwayService;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,8 +55,6 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-//		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//		nm.cancel(R.layout.login);
 	}
     
 	private OnClickListener loginbutclicklistner = new OnClickListener() {
@@ -72,13 +70,13 @@ public class LoginActivity extends Activity {
 //			}
 //			editor.commit();
 			
+			//启动后台服务
+			Intent intents = new Intent(LoginActivity.this, BirdwayService.class);
+			startService(intents);  //服务的启动应该是异步的
+			
 			//显示地图窗口
 			Intent intent = new Intent(LoginActivity.this, BaiduMapActivity.class);
 			startActivity(intent);
-			
-			//启动后台服务
-//			Intent intents = new Intent(context, BirdwayService.class);
-//			startService(intents);
 		}
     };
     

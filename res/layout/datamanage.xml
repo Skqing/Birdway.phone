@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+	android:gravity="left">
+	
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/datamanager_volume" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/sd_all_volume" />
+    <TextView
+        android:id="@+id/dav_tv_id"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/datamanager_all_volume" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/datamanager_sent_volume" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/datamanager_nosend_volume" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="horizontal"
+	    android:gravity="center_horizontal">
+	    
+        <Button 
+	        android:id="@+id/dm_empty_id"
+	        android:layout_width="100dp"
+	        android:layout_height="wrap_content" 
+	        android:textSize="20sp"
+	        android:text="@string/datamanage_empty" />
+	    <Button 
+	        android:id="@+id/dm_export_id"
+	        android:layout_width="100dp"
+	        android:layout_height="wrap_content" 
+	        android:textSize="20sp"
+	        android:text="@string/datamanage_export" />
+	    <Button 
+	        android:id="@+id/dm_sync_id"
+	        android:layout_width="100dp"
+	        android:layout_height="wrap_content" 
+	        android:textSize="20sp"
+	        android:text="@string/datamanage_sync" />
+    </LinearLayout>
+    
+</LinearLayout>

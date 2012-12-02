@@ -1,4 +1,4 @@
-package org.dolphinboy.birdway.task;
+package org.dolphinboy.birdway.asynwork;
 
 import android.app.Activity;
 import android.hardware.Sensor;

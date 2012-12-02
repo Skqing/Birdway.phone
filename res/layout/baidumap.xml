@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <!-- 添加显示百度地图的控件 -->
 	<com.baidu.mapapi.MapView 
-	    android:id="@+id/bmapView"
+	    android:id="@+id/bmapview"
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent" 
 		android:clickable="true" />

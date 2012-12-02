@@ -16,7 +16,7 @@
     <string name="loginbut">登录</string>
     <string name="singupbut">注册</string>
     
-    <string name="format">dd.mm.sss</string>
+    <string name="date_format">yyyy-MM-dd</string>
     
     <string name="main_map">地图</string>
     
@@ -26,5 +26,18 @@
     <string name="longitudeitem">经度</string>
     <string name="longitudevalue">显示经度</string>
     
+    <string name="datamanager_volume">数据量比</string>
+    <string name="sd_all_volume">扩展卡总容量</string>
+    <string name="datamanager_all_volume">采集数据总容量</string>
+    <string name="datamanager_sent_volume">已发送的数据容量</string>
+    <string name="datamanager_nosend_volume">未发送的数据容量</string>
     
+    
+    <string name="datamanage_empty">清空</string>
+    <string name="datamanage_export">导出</string>
+    <string name="datamanage_sync">同步</string>
+    
+    <string name="menu_data">数据</string>
+    <string name="menu_close">关闭</string>
+    <string name="menu_exit">退出</string>
 </resources>

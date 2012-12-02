@@ -1,15 +1,13 @@
-package org.dolphinboy.birdway.task;
+package org.dolphinboy.birdway.asynwork;
 
 import android.os.AsyncTask;
 
-public class LocationTask extends AsyncTask {
+public class DataSendTask extends AsyncTask {
 
-	
-	
-	
-	
 	@Override
 	protected Object doInBackground(Object... params) {
+		
+		
 		
 		return null;
 	}

@@ -1,6 +1,5 @@
-package org.dolphinboy.birdway.task;
+package org.dolphinboy.birdway.asynwork;
 
-import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -14,24 +13,22 @@ import android.util.Log;
 public class OrientationTask extends AsyncTask {
 	private static final String TAG = "OrientationTask";
 	
+	private boolean data_conntected = false;  //是否连接到数据
+	private long time_duration = 5000;
+	
 	private TaskCallBack callBk = null;
-	private Activity context = null;
+	private Context context = null;
 	
 	private SensorManager sensormanager;
 	private Sensor sensor_orientation;
-	private boolean TIME_OUT = false;  //是否超时
-	private boolean DATA_CONNTECTED = false;  //是否连接到数据
-	private long TIME_DURATION = 5000;
 	
 	private OrientationHandler orientation_handler = null;
 	
-	public OrientationTask(Activity context, TaskCallBack callBk, long time_out) {
+	public OrientationTask(Context context, TaskCallBack callBk, long time_out) {
 		this.callBk = callBk;
 		this.context = context;
-		this.TIME_DURATION = time_out;
-		InitOrientation();
-	}
-	private void InitOrientation() {
+		this.time_duration = time_out;
+		//初始化方向传感器
 		sensormanager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		sensor_orientation = sensormanager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 		sensormanager.registerListener(sensorListener, sensor_orientation, SensorManager.SENSOR_DELAY_FASTEST);
@@ -52,15 +49,13 @@ public class OrientationTask extends AsyncTask {
 			float x = event.values[SensorManager.DATA_X];
 			float y = event.values[SensorManager.DATA_Y];
 			float z = event.values[SensorManager.DATA_Z];
-			//计算值数据得到描述性方向信息
 			
-			DATA_CONNTECTED = true;
+			data_conntected = true;
 			Message msg = orientation_handler.obtainMessage();
 			msg.what = 0;
-			msg.obj = event;
+			msg.obj = new Object[]{x, y, z};
 			orientation_handler.sendMessage(msg);
 			
-//			str_orientation = x;
 			Log.i(TAG, "x="+x+","+"y="+y+","+"z="+z);
 		}
 		
